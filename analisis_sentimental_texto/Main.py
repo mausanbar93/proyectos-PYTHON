@@ -7,5 +7,9 @@ if __name__ == '__main__':
 	#Instanciamos clase consultas
 	metodo = consultas()
 
-	texto = 'love'
-	print "Resp1: ",metodo.text_processing(texto)
+	texto = 'Fast and accurate sentiment classification using an enhanced Naive Bayes model'
+	print '/********** TEXTO ANALIZAR **********/'
+	print texto
+	print '/********** FIN TEXTO ANALIZAR **********/\n'
+	
+	print metodo.text_processing(texto)
