@@ -1,5 +1,7 @@
-# - *- coding: utf- 8 - *-
-import unirest,json
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import unirest,json,requests
 
 #Definimos clase consultas, que va a contener las peticiones a las APIs
 class consultas:
@@ -59,4 +61,29 @@ class consultas:
 		print 'Respuesta Analisis: ',respuesta
 		print '/********** FIN API sentiment **********/\n'
 
-		return respuesta;
+		return respuesta
+
+	# Función que hace consultas a la API sentiment140, análisis en español e inglés
+	def sentiment140(self,data):
+		data = {"data": [{"text":data}]}		
+		response = requests.post("http://www.sentiment140.com/api/bulkClassifyJson",
+			data=json.dumps(data),
+			headers = {
+				'Content-type': 'Application/json',
+				'Accept': 'application/json'
+			}
+		)
+		resp = response.json()['data'][0]
+		polaridad = resp['polarity']
+		print '/********** API sentiment140 **********/'
+		print resp		
+		if polaridad == 0:
+			respuesta = 'Emocion Negativa'
+		elif polaridad == 2:
+			respuesta = 'Emocion Neutral'
+		else:
+			respuesta = 'Emocion Positiva'			
+		print 'Respuesta Analisis: ',respuesta
+		print '/********** FIN API sentiment140 **********/\n'
+
+		return respuesta
