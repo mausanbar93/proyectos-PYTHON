@@ -4,7 +4,7 @@
 import unirest,json,requests
 from repustate import Client
 
-#Definimos clase consultas, que va a contener las peticiones a las APIs
+# Se define clase consultas, que va a contener las peticiones a las APIs
 class consultas:
 
 	# Función que hace consultas a la API text_processing, análisis en inglés
