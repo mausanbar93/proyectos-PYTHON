@@ -17,3 +17,4 @@ if __name__ == '__main__':
 	metodo.text_processing(texto)
 	metodo.sentiment(texto)
 	metodo.sentiment140(texto)
+	metodo.repustate(texto)

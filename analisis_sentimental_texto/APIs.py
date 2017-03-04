@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import unirest,json,requests
+from repustate import Client
 
 #Definimos clase consultas, que va a contener las peticiones a las APIs
 class consultas:
@@ -87,3 +88,22 @@ class consultas:
 		print '/********** FIN API sentiment140 **********/\n'
 
 		return respuesta
+	
+	# Función que hace consultas a la API repustate sentiment, análisis en español e inglés, otros
+	def repustate(self,data):
+		client = Client(api_key='58007d78a943329b75a778c3a2e55d22e83bf8ec', version='v3')
+		response = client.sentiment({'data':data,'lang':'es','emoji':0})
+		resp = response['score']
+		print '/********** API repustate sentiment **********/'
+		print resp		
+		if resp < 0:
+			respuesta = 'Emocion Negativa'
+		elif resp == 0:
+			respuesta = 'Emocion Neutral'
+		else:
+			respuesta = 'Emocion Positiva'			
+		print 'Respuesta Analisis: ',respuesta
+		print '/********** FIN API repustate sentiment **********/\n'
+
+		return respuesta
+		
